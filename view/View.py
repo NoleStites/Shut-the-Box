@@ -1,15 +1,19 @@
 from tkinter import *
 from abc import ABC, abstractmethod
+from controller.Controller import Controller
 
 
 #class AbstractView(ABC):    
 
 class View():
 
-    def __init__(self):
+    def __init__(self, controller: Controller):
         """
         Creates a view with the defined characteristics.
         """
+
+        # Getting the controller
+        self.controller = controller
 
         # Initializing the root window
         root = Tk()
@@ -64,7 +68,51 @@ class View():
         bottomframe = Frame(root, height=200, width=300, bg="#004d00")
         bottomframe.pack(expand=True, fill=BOTH)
 
- 
+        # Dice roll 1 button
+        self.diceroll1_button = Button(bottomframe, height=2, width=10, bg="black", fg="gray", activebackground="#1a1a1a", activeforeground="gray", text="Roll One Dice", font=("Arial", 10, "italic"), command=self.generateRoll1)
+        self.diceroll1_button.place(relx=0.1, rely=0.15)
+
+        # Dice roll 2 button
+        self.diceroll2_button = Button(bottomframe, height=2, width=10, bg="black", fg="gray", activebackground="#1a1a1a", activeforeground="gray", text="Roll Two Dice", font=("Arial", 10, "italic"), command=self.generateRoll2)
+        self.diceroll2_button.place(relx=0.7, rely=0.15)
+
+        # Cover tiles button
+        self.covertiles_button = Button(bottomframe, height=2, width=10, bg="gray", fg="black", activebackground="#999966", activeforeground="black", text="Cover Tiles", font=("Arial", 10, "italic"), state=DISABLED, command=self.coverTiles)
+        self.covertiles_button.place(relx=0.39, rely=0.6)
+
+        # Dice results
+        diceresults = Frame(bottomframe, height=73, width=73, bg="#003300")
+        diceresults.place(relx=0.43, rely=0.1)
+        self.dicelabel = Label(diceresults, text="", fg="white", bg="#003300", font=("Arial", 16, "bold"))
+        self.dicelabel.place(relx=0.3, rely=0.3)
+
         root.mainloop() # Starts/runs the GUI (everything involving the GUI should come before this)
+
+
     def tileChoiceChange(self):    
         print(f'{self.var1.get()} {self.var2.get()} {self.var3.get()} {self.var4.get()} {self.var5.get()} {self.var6.get()} {self.var7.get()} {self.var8.get()} {self.var9.get()}')
+
+
+    def generateRoll1(self):
+        """
+        Send a request to the controller to roll one dice
+        Returns value of roll.
+        """
+        roll_result = self.controller.requestRoll(1)    # requesting 1 dice roll
+        self.dicelabel['text'] = str(roll_result)
+
+
+    def generateRoll2(self):
+        """
+        Sends a request to the controller to roll two dice
+        returns value of roll.
+        """
+        roll_result = self.controller.requestRoll(2)    # requesting 2 dice rolls
+        self.dicelabel['text'] = str(roll_result)
+
+
+    def coverTiles(self):
+        """
+        Covers the requested tiles
+        """
+        pass
