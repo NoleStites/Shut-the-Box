@@ -61,7 +61,7 @@ class View():
         self.bottomframe.pack(expand=True, fill=BOTH)
 
         # Dice roll 1 button
-        self.diceroll1_button = Button(self.bottomframe, height=2, width=10, bg="black", fg="gray", activebackground="#1a1a1a", activeforeground="gray", text="Roll One Dice", font=("Arial", 10, "italic"), command=self.generateRoll1)
+        self.diceroll1_button = Button(self.bottomframe, height=2, width=10, bg="#004d00", fg="gray", activebackground="#1a1a1a", activeforeground="gray", text="Roll One Dice", font=("Arial", 10, "italic"), command=self.generateRoll1, state=DISABLED)
         self.diceroll1_button.place(relx=0.1, rely=0.15)
 
         # Dice roll 2 button
@@ -243,8 +243,9 @@ class View():
         
 
         # Enable the dice roll buttons
-        self.diceroll1_button['bg'] = "black"
-        self.diceroll1_button['state'] = NORMAL
+        if (self.tile_states[6].get() == -1) and (self.tile_states[7].get() == -1) and (self.tile_states[8].get() == -1): # one dice roll is onyl available if 7, 8, and 9 are covered
+            self.diceroll1_button['bg'] = "black"
+            self.diceroll1_button['state'] = NORMAL
         self.diceroll2_button['bg'] = "black"
         self.diceroll2_button['state'] = NORMAL
 
