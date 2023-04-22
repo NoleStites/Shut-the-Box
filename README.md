@@ -8,11 +8,9 @@
 ### Rules
 Here are the rules:
 1. Rolling: you must roll two dice if the 7, 8, and 9 tiles are still uncovered. You may roll either one or two dice if the 7, 8, and 9 tiles are all covered.
-2. After rolling: sum up the total of your dice roll and choose a combination of uncovered tiles to cover that add up to your dice total. Example when 5 is rolled: you can cover any one of these combinations:
-- combo 1
-- combo 2
+2. After rolling: sum up the total of your dice roll and choose a combination of uncovered tiles to cover that add up to your dice total.
+> Example: if a 5 is rolled, you may cover the 5 tile, both the 4 and 1 tiles, or both the 3 and 2 tiles.
 3. Continue
-> blockquote
 
 You may have to use this command to get tkinter to work:
 $ sudo apt-get install python3-tk
