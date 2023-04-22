@@ -12,56 +12,48 @@ class View():
         Creates a view with the defined characteristics.
         """
 
-        # Getting the controller
-        self.controller = controller
-
         # Initializing the root window
         root = Tk()
         root.geometry("600x400")    # Dimensions of the frame (window)
         root.title("Shut the Box")  # Used to add a title to the whole window
-        
-        # Intialize tile-state variables
-        self.var1 = IntVar()
-        self.var2 = IntVar()
-        self.var3 = IntVar()
-        self.var4 = IntVar()
-        self.var5 = IntVar()
-        self.var6 = IntVar()
-        self.var7 = IntVar()
-        self.var8 = IntVar()
-        self.var9 = IntVar()
+
+        # Initializing variables
+        self.controller = controller
+        self.dice_results = 0  
+        self.tile_states = [IntVar(),IntVar(),IntVar(),IntVar(),IntVar(),IntVar(),IntVar(),IntVar(),IntVar()]  # List for holding the state of the tiles 
+        self.active_tiles = []  # A list of the tiles currently selected by the player
 
         # Top of root window
         topframe = Frame(root, height=200, width=300, bg="#331a00")  # 'root' refers to the parent frame that this frame is inside. Root is the main window.
         topframe.pack(expand=True, fill=BOTH)
     
         # Tiles
-        tile1 = Checkbutton(topframe, text="1", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.var1)
-        tile1.place(relx=0.01, rely=0.3)
+        self.tile1 = Checkbutton(topframe, text="1", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.tile_states[0], state=DISABLED)
+        self.tile1.place(relx=0.01, rely=0.3)
 
-        tile2 = Checkbutton(topframe, text="2", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.var2)
-        tile2.place(relx=0.12, rely=0.3)
+        self.tile2 = Checkbutton(topframe, text="2", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.tile_states[1], state=DISABLED)
+        self.tile2.place(relx=0.12, rely=0.3)
 
-        tile3 = Checkbutton(topframe, text="3", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.var3)
-        tile3.place(relx=0.23, rely=0.3)
+        self.tile3 = Checkbutton(topframe, text="3", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.tile_states[2], state=DISABLED)
+        self.tile3.place(relx=0.23, rely=0.3)
 
-        tile4 = Checkbutton(topframe, text="4", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.var4)
-        tile4.place(relx=0.34, rely=0.3)
+        self.tile4 = Checkbutton(topframe, text="4", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.tile_states[3], state=DISABLED)
+        self.tile4.place(relx=0.34, rely=0.3)
 
-        tile5 = Checkbutton(topframe, text="5", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.var5)
-        tile5.place(relx=0.45, rely=0.3)
+        self.tile5 = Checkbutton(topframe, text="5", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.tile_states[4], state=DISABLED)
+        self.tile5.place(relx=0.45, rely=0.3)
 
-        tile6 = Checkbutton(topframe, text="6", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.var6)
-        tile6.place(relx=0.56, rely=0.3)
+        self.tile6 = Checkbutton(topframe, text="6", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.tile_states[5], state=DISABLED)
+        self.tile6.place(relx=0.56, rely=0.3)
 
-        tile7 = Checkbutton(topframe, text="7", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.var7)
-        tile7.place(relx=0.67, rely=0.3)
+        self.tile7 = Checkbutton(topframe, text="7", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.tile_states[6], state=DISABLED)
+        self.tile7.place(relx=0.67, rely=0.3)
 
-        tile8 = Checkbutton(topframe, text="8", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.var8)
-        tile8.place(relx=0.78, rely=0.3)
+        self.tile8 = Checkbutton(topframe, text="8", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.tile_states[7], state=DISABLED)
+        self.tile8.place(relx=0.78, rely=0.3)
 
-        tile9 = Checkbutton(topframe, text="9", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.var9)
-        tile9.place(relx=0.89, rely=0.3)
+        self.tile9 = Checkbutton(topframe, text="9", height=3, width=1, bg="#a6a6a6", activebackground="#bfbfbf", fg="black", font=("Arial", 16, "bold"), relief=RAISED, command=self.tileChoiceChange, variable=self.tile_states[8], state=DISABLED)
+        self.tile9.place(relx=0.89, rely=0.3)
 
 
         # Bottom of root window
@@ -77,7 +69,7 @@ class View():
         self.diceroll2_button.place(relx=0.7, rely=0.15)
 
         # Cover tiles button
-        self.covertiles_button = Button(bottomframe, height=2, width=10, bg="gray", fg="black", activebackground="#999966", activeforeground="black", text="Cover Tiles", font=("Arial", 10, "italic"), state=DISABLED, command=self.coverTiles)
+        self.covertiles_button = Button(bottomframe, height=2, width=10, bg="#004d00", fg="white", activebackground="#800000", activeforeground="black", text="Cover Tiles", font=("Arial", 10, "italic"), state=DISABLED, command=self.coverTiles)
         self.covertiles_button.place(relx=0.39, rely=0.6)
 
         # Dice results
@@ -89,30 +81,170 @@ class View():
         root.mainloop() # Starts/runs the GUI (everything involving the GUI should come before this)
 
 
-    def tileChoiceChange(self):    
-        print(f'{self.var1.get()} {self.var2.get()} {self.var3.get()} {self.var4.get()} {self.var5.get()} {self.var6.get()} {self.var7.get()} {self.var8.get()} {self.var9.get()}')
+    def tileChoiceChange(self):
+        """
+        Every time a new tile is checked by the user, this method will request a sum
+        of the currently-checked tiles from the model to be compared with the dice roll.
+        Enables the cover tile button if the two values are equal.
+        """
+        binary_state_list = []
+
+        # Populate the list of current tile states
+        for val in range(9):
+            binary_state_list.append(self.tile_states[val].get())
+
+        # Send list to controller to request sum from model
+        tile_sum, self.active_tiles = self.controller.getBinaryListSum(binary_state_list)            
+
+        # Check if player is allowed to cover the current tiles
+        self.canCoverTiles(tile_sum)
+
+
+    def canCoverTiles(self, sum_of_tiles):
+        """
+        Given the current state of tiles selected, will determine if player is
+        allowed to cover the tiles and, if so, enable the cover tile button
+        """
+        # Checking if the selected tiles is equal to the dice roll
+        if sum_of_tiles == self.dice_results:
+            self.covertiles_button['state'] = NORMAL    # enabling the cover tiles button
+            self.covertiles_button['bg'] = "#660000"
+            self.covertiles_button['fg'] = "white"
+            self.covertiles_button['activeforeground'] = "white"
+        else:
+            self.covertiles_button['state'] = DISABLED  # disabling the cover tiles button
+            self.covertiles_button['bg'] = "#004d00"
+            self.covertiles_button['fg'] = "gray"
+
+
+
+    def postRollGameState(self):
+        """
+        Called after rolling the dice the disable dice roll buttons and show tile values.
+        Can't have the user rolling twice because they didn't like their roll now can we?
+        """
+        # Disabling the dice roll buttons
+        self.diceroll1_button['state'] = DISABLED
+        self.diceroll2_button['state'] = DISABLED
+        self.diceroll1_button['bg'] = "#004d00"
+        self.diceroll2_button['bg'] = "#004d00"
+
+        # Enable the tiles for selecting if they haven't already been covered
+        if self.tile1['bg'] != "#331a00":
+            self.tile1['state'] = NORMAL
+        if self.tile2['bg'] != "#331a00":
+            self.tile2['state'] = NORMAL
+        if self.tile3['bg'] != "#331a00":
+            self.tile3['state'] = NORMAL
+        if self.tile4['bg'] != "#331a00":
+            self.tile4['state'] = NORMAL
+        if self.tile5['bg'] != "#331a00":
+            self.tile5['state'] = NORMAL
+        if self.tile6['bg'] != "#331a00":
+            self.tile6['state'] = NORMAL
+        if self.tile7['bg'] != "#331a00":
+            self.tile7['state'] = NORMAL
+        if self.tile8['bg'] != "#331a00":
+            self.tile8['state'] = NORMAL
+        if self.tile9['bg'] != "#331a00":
+            self.tile9['state'] = NORMAL
 
 
     def generateRoll1(self):
         """
         Send a request to the controller to roll one dice
-        Returns value of roll.
         """
         roll_result = self.controller.requestRoll(1)    # requesting 1 dice roll
+        self.dice_results = roll_result
         self.dicelabel['text'] = str(roll_result)
+
+        self.postRollGameState()
 
 
     def generateRoll2(self):
         """
         Sends a request to the controller to roll two dice
-        returns value of roll.
         """
         roll_result = self.controller.requestRoll(2)    # requesting 2 dice rolls
+        self.dice_results = roll_result
         self.dicelabel['text'] = str(roll_result)
+
+        self.postRollGameState()
 
 
     def coverTiles(self):
         """
-        Covers the requested tiles
+        Covers the requested tiles and refresh the game loop to the dice roll state
         """
-        pass
+        # Cover the currently selected tiles
+        for tile in self.active_tiles:
+            if tile == 1:
+                self.tile1['bg'] = "#331a00"
+                self.tile_states[tile-1].set(0)
+            elif tile == 2:    
+                self.tile2['bg'] = "#331a00"
+                self.tile_states[tile-1].set(0)
+            elif tile == 3:    
+                self.tile3['bg'] = "#331a00"
+                self.tile_states[tile-1].set(0)
+            elif tile == 4:    
+                self.tile4['bg'] = "#331a00"
+                self.tile_states[tile-1].set(0)
+            elif tile == 5:    
+                self.tile5['bg'] = "#331a00"
+                self.tile_states[tile-1].set(0)
+            elif tile == 6:    
+                self.tile6['bg'] = "#331a00"
+                self.tile_states[tile-1].set(0)
+            elif tile == 7:    
+                self.tile7['bg'] = "#331a00"
+                self.tile_states[tile-1].set(0)
+            elif tile == 8:    
+                self.tile8['bg'] = "#331a00"
+                self.tile_states[tile-1].set(0)
+            elif tile == 9:    
+                self.tile9['bg'] = "#331a00"
+                self.tile_states[tile-1].set(0)
+        
+        # Disable the tiles for the start of the next game loop
+        self.disableTiles()
+
+        
+    def disableTiles(self):
+        """
+        Puts all of the tiles into a disabled state
+        """
+        self.tile1['state'] = DISABLED
+        self.tile2['state'] = DISABLED
+        self.tile3['state'] = DISABLED
+        self.tile4['state'] = DISABLED
+        self.tile5['state'] = DISABLED
+        self.tile6['state'] = DISABLED
+        self.tile7['state'] = DISABLED
+        self.tile8['state'] = DISABLED
+        self.tile9['state'] = DISABLED
+
+        # Prepare box for next round of game
+        self.roundPrep()
+
+
+    def roundPrep(self):
+        """
+        Prepares the box for the next dice roll by disabling/enabling required
+        buttons and clearing the old dice roll.
+        """
+        # Disable cover tile button
+        self.covertiles_button['bg'] = "#004d00"
+        self.covertiles_button['state'] = DISABLED
+        
+
+        # Enable the dice roll buttons
+        self.diceroll1_button['bg'] = "black"
+        self.diceroll1_button['state'] = NORMAL
+        self.diceroll2_button['bg'] = "black"
+        self.diceroll2_button['state'] = NORMAL
+
+        # Clear the old dice roll
+        self.dicelabel['text'] = ""
+
+

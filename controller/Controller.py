@@ -18,3 +18,12 @@ class Controller():
             roll_totals += self.model.rollDice()
 
         return roll_totals
+
+
+    def getBinaryListSum(self, binary_list):
+        """
+        Sends list of binary to model for adding, then returns result to view.
+        """
+        binary_sum, tile_list = self.model.sumBinaryList(binary_list)
+        return binary_sum, tile_list
+
