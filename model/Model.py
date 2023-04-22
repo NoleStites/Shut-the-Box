@@ -28,3 +28,17 @@ class Model():
         return binary_sum, tile_list
 
 
+    def determineScore(self, tile_values):
+        """
+        From the tiles left uncovered, determines and returns the player's score.
+        """
+        score = 0
+
+        # Go through each tile state and, if not negative, add index to score
+        for index in range(9):
+            if tile_values[index] != -1:
+                score += (index + 1)
+
+        return score
+
+

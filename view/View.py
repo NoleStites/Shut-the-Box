@@ -78,6 +78,10 @@ class View():
         self.dicelabel = Label(diceresults, text="", fg="white", bg="#003300", font=("Arial", 16, "bold"))
         self.dicelabel.place(relx=0.3, rely=0.3)
 
+        # End game button
+        self.endgame_button = Button(bottomframe, height=1, width=6, bg="#cc7a00", fg="black", text="End Game", command=self.endGame)
+        self.endgame_button.place(relx=0.87, rely=0.86)
+
         root.mainloop() # Starts/runs the GUI (everything involving the GUI should come before this)
 
 
@@ -180,31 +184,31 @@ class View():
         for tile in self.active_tiles:
             if tile == 1:
                 self.tile1['bg'] = "#331a00"
-                self.tile_states[tile-1].set(0)
+                self.tile_states[tile-1].set(-1)
             elif tile == 2:    
                 self.tile2['bg'] = "#331a00"
-                self.tile_states[tile-1].set(0)
+                self.tile_states[tile-1].set(-1)
             elif tile == 3:    
                 self.tile3['bg'] = "#331a00"
-                self.tile_states[tile-1].set(0)
+                self.tile_states[tile-1].set(-1)
             elif tile == 4:    
                 self.tile4['bg'] = "#331a00"
-                self.tile_states[tile-1].set(0)
+                self.tile_states[tile-1].set(-1)
             elif tile == 5:    
                 self.tile5['bg'] = "#331a00"
-                self.tile_states[tile-1].set(0)
+                self.tile_states[tile-1].set(-1)
             elif tile == 6:    
                 self.tile6['bg'] = "#331a00"
-                self.tile_states[tile-1].set(0)
+                self.tile_states[tile-1].set(-1)
             elif tile == 7:    
                 self.tile7['bg'] = "#331a00"
-                self.tile_states[tile-1].set(0)
+                self.tile_states[tile-1].set(-1)
             elif tile == 8:    
                 self.tile8['bg'] = "#331a00"
-                self.tile_states[tile-1].set(0)
+                self.tile_states[tile-1].set(-1)
             elif tile == 9:    
                 self.tile9['bg'] = "#331a00"
-                self.tile_states[tile-1].set(0)
+                self.tile_states[tile-1].set(-1)
         
         # Disable the tiles for the start of the next game loop
         self.disableTiles()
@@ -248,3 +252,16 @@ class View():
         self.dicelabel['text'] = ""
 
 
+    def endGame(self):
+        """
+        Requests the controller to calculate the end score and terminates the game.
+        """
+        state_values = []
+
+        # Populate state_values with current states
+        for tile in self.tile_states:
+            state_values.append(tile.get())
+
+        score = self.controller.calculateScore(state_values)
+
+        print(f'SCORE: {score}')

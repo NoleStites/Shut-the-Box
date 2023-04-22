@@ -27,3 +27,11 @@ class Controller():
         binary_sum, tile_list = self.model.sumBinaryList(binary_list)
         return binary_sum, tile_list
 
+
+    def calculateScore(self, tile_values):
+        """
+        Requests the model to return a score based on the state of the tiles at the end of the game
+        """
+        score = self.model.determineScore(tile_values)
+        return score
+
