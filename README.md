@@ -17,6 +17,13 @@ Here are the rules:
 ### Setup Instructions
 1. Clone the repository   
 `$ git clone https://github.com/SOUComputerScience/lab-5-NoleStites.git`
-3. de
-You may have to use this command to get tkinter to work:
-$ sudo apt-get install python3-tk
+2. Change directories into the repo    
+`$ cd lab-5-NoleStites` 
+3. Create a Python virtual environment    
+`$ python -m venv env`   
+`$ source env/bin/activate`     
+4. Install the required packages     
+`$ pip install -r requirements.txt`     
+5. Start the game    
+`$ python3 app.py`   
+> Note: If you get an error, you may have to use this command to get tkinter to work: `$ sudo apt-get install python3-tk`
