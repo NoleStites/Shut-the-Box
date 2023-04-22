@@ -15,5 +15,6 @@ Here are the rules:
 ---
 
 ### Setup Instructions
+1. tester
 You may have to use this command to get tkinter to work:
 $ sudo apt-get install python3-tk
