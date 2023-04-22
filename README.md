@@ -1,4 +1,8 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/iAh3Zh1L)
+#Shut the Box
+###Description
+"Shut the Box" is a dice game (gambling often being involved) in which a player continually rolls dice and covers any tiles that add up to the sum of the dice. If you roll the dice and there is no combination of tiles that add up to the dice total, then your game is over and you sum the uncovered tiles for your score. If you successfully cover all of the tiles, then you win; you have shut the box!
+###Rules
+Here are the rules
 
 You may have to use this command to get tkinter to work:
 $ sudo apt-get install python3-tk
