@@ -12,6 +12,7 @@ Here are the rules:
 - combo 1
 - combo 2
 3. Continue
+> blockquote
 
 You may have to use this command to get tkinter to work:
 $ sudo apt-get install python3-tk
