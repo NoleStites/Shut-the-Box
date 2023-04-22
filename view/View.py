@@ -1,11 +1,9 @@
 from tkinter import *
-from abc import ABC, abstractmethod
 from controller.Controller import Controller
+from view.AbstractView import AbstractView
 
 
-#class AbstractView(ABC):    
-
-class View():
+class View(AbstractView):
 
     def __init__(self, controller: Controller):
         """

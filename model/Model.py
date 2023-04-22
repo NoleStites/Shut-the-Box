@@ -1,12 +1,12 @@
-from abc import ABC, abstractmethod
 import random   # For the dice rolls
+from model.AbstractModel import AbstractModel
 
-#class AbstractModel(ABC):
-
-
-class Model():
+class Model(AbstractModel):
 
     def rollDice(self):
+        """
+        Returns a random number between 1 and 6 to simulate a dice roll.
+        """
         roll = random.randint(1, 6) # A six-sided dice
         return roll
 
