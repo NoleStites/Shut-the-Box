@@ -15,6 +15,8 @@ Here are the rules:
 ---
 
 ### Setup Instructions
-1. tester
+1. Clone the repository
+`$ git clone `
+3. de
 You may have to use this command to get tkinter to work:
 $ sudo apt-get install python3-tk
