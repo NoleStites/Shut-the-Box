@@ -16,9 +16,9 @@ Here are the rules:
 
 ### Setup Instructions
 1. Clone the repository   
-`$ git clone https://github.com/SOUComputerScience/lab-5-NoleStites.git`
+`$ git clone https://github.com/NoleStites/Shut-the-Box.git`
 2. Change directories into the repo    
-`$ cd lab-5-NoleStites` 
+`$ cd Shut-the-Box` 
 3. Create a Python virtual environment    
 `$ python -m venv env`   
 `$ source env/bin/activate`     
